@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dotsLeft = document.querySelectorAll(".pac-dot").length;
         const pelletsLeft = document.querySelectorAll(".power-pellet").length;
 
-        if (dotsLeft >0 ) {
+        if (dotsLeft >0 && pelletsLeft === 0) {
             ghosts.forEach((ghost) => clearInterval(ghost.timerId));
             isGameOver = true;
             winScoreDisplay.innerHTML = score;
