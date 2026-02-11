@@ -1,0 +1,260 @@
+:root {
+    --bg-color: #FFF0DD; /* Cream */
+    --wall-color: #86B0BD; /* Blue-ish */
+    --pacman-color: #E2A16F; /* Orange-ish (fallback) */
+    --ghost-color: #D1D3D4; /* Grey (fallback) */
+    --dot-color: #E2A16F; /* Orange-ish */
+    --super-food-color: #a82525; /* Keep red for strawberry */
+    --text-color: #86B0BD; /* Blue-ish for text */
+    --font-family: "Fredoka One", cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrolling on mobile */
+    touch-action: none; /* Prevent zoom/scroll gestures */
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    padding: 10px;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.score-board {
+    display: flex;
+    gap: 20px;
+    font-size: 1.2rem;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.2);
+    border: 2px solid var(--wall-color);
+}
+
+#game-board {
+    background-color: #ffffff; /* White background for board to pop against cream body */
+    border: 4px solid var(--wall-color);
+    border-radius: 10px;
+    display: grid;
+    /* Default to 25px cells (Mobile friendly-ish) */
+    grid-template-columns: repeat(15, 25px);
+    grid-template-rows: repeat(15, 25px);
+    width: fit-content;
+    height: fit-content;
+    box-shadow: 0 8px 16px rgba(255, 105, 180, 0.4);
+    margin: 0 auto; /* Center the board */
+}
+
+/* Responsiveness */
+@media (max-width: 390px) {
+    #game-board {
+        grid-template-columns: repeat(15, 20px);
+        grid-template-rows: repeat(15, 20px);
+    }
+    .cell {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+@media (min-width: 600px) {
+    #game-board {
+        grid-template-columns: repeat(15, 35px);
+        grid-template-rows: repeat(15, 35px);
+    }
+    .cell {
+        width: 35px !important;
+        height: 35px !important;
+    }
+}
+
+.cell {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure content doesn't spill */
+}
+
+.wall {
+    background-color: var(--wall-color);
+    width: 100%; /* Explicitly fill */
+    height: 100%;
+}
+
+.ghost {
+    font-size: 1.2rem; /* Ghost emoji size */
+    z-index: 9;
+    line-height: 1; /* Prevent line-height issues */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    width: 20%;
+    height: 20%;
+    background-color: var(--dot-color);
+    border-radius: 50%;
+    /* Ensure it doesn't flex-grow */
+    flex-shrink: 0;
+}
+
+.super-food {
+    font-size: 1rem; /* Strawberry emoji size */
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.pacman {
+    width: 80%;
+    height: 80%;
+    background-image: url("imgs/us.jpeg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 15%; /* Cube-ish with slight rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 10 !important;
+}
+
+
+
+.ghost.scared {
+    filter: hue-rotate(180deg); /* Change color when scared */
+    opacity: 0.7;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    background-color: white;
+    border: 3px solid var(--wall-color);
+    border-radius: 50%;
+    color: var(--wall-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 0 var(--text-color);
+    box-shadow: none;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.control-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 230, 230, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 4px solid var(--wall-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+}
+
+.modal-content h1 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.modal button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    background-color: var(--wall-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #f63d3d;
+    transition: transform 0.1s;
+}
+
+.modal button:active {
+    transform: translateY(4px);
+    box-shadow: none; 
+}
+
+.win-img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 2px solid var(--wall-color);
+}

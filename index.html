@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Isa Pac-Man</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+        </style>
+    </head>
+    <body>
+        <div class="game-container">
+            <header>
+                <div class="score-board">
+                    <span>SCORE:🇧🇷 <span id="score">0</span></span>
+                    <span>LIVES:🇮🇱 <span id="lives">3</span></span>
+                </div>
+            </header>
+
+            <div id="game-board"></div>
+
+            <div class="controls">
+                <div class="control-row">
+                    <button id="btn-up" class="control-btn">⬆️</button>
+                </div>
+                <div class="control-row">
+                    <button id="btn-left" class="control-btn">⬅️</button>
+                    <button id="btn-down" class="control-btn">⬇️</button>
+                    <button id="btn-right" class="control-btn">➡️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="start-modal" class="modal">
+            <div class="modal-content">
+                <h1>Toti ARE YOU READY?</h1>
+                <p>Collect all the dots to win!</p>
+                <p>Avoid the ghosts 👻</p>
+                <p>Eat 🍓 to turn the tables!</p>
+                <button id="start-btn">YALLA</button>
+            </div>
+        </div>
+
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content">
+                <h1>Game Over </h1>
+                <p>Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">Try Again</button>
+            </div>
+        </div>
+
+        <div id="win-modal" class="modal hidden">
+            <div class="modal-content">
+                <h1>YOU WON! 🇧🇷</h1>
+                <img src="imgs/winning.jpeg" alt="Winning" class="win-img">
+                <p>Happy Valentine's Day!</p>
+                <p>Score:<span id="win-score">0</span></p>
+                <button id="win-restart-btn">Play Again</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
