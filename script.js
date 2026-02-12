@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const winScoreDisplay = document.getElementById("win-score");
     const winRestartBtn = document.getElementById("win-restart-btn");
     const finalScoreDisplay = document.getElementById("final-score");
+    const bgMusic = document.getElementById("bg-music");
 
     // Controls
     const btnUp = document.getElementById("btn-up");
@@ -101,6 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
         lives = 3;
         scoreDisplay.innerHTML = score;
         livesDisplay.innerHTML = lives;
+
+        // Try to play music (might be blocked by browser policy until interaction)
+        bgMusic.play().catch((e) => console.log("Audio play failed:", e));
 
         clearTimeout(ghostTimer);
         clearInterval(pacmanTimer);
@@ -375,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dotsLeft = document.querySelectorAll(".pac-dot").length;
         const pelletsLeft = document.querySelectorAll(".power-pellet").length;
 
-        if (dotsLeft >0 && pelletsLeft === 0) {
+        if (dotsLeft > 0 && pelletsLeft === 0) {
             ghosts.forEach((ghost) => clearInterval(ghost.timerId));
             isGameOver = true;
             winScoreDisplay.innerHTML = score;

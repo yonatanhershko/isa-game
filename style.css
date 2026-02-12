@@ -1,11 +1,11 @@
 :root {
-    --bg-color: #FFF0DD; /* Cream */
-    --wall-color: #86B0BD; /* Blue-ish */
+    --bg-color: #f4f9ff; /* Soft White/Blue */
+    --wall-color: #5593d2; /* Soft Blue */
     --pacman-color: #E2A16F; /* Orange-ish (fallback) */
-    --ghost-color: #D1D3D4; /* Grey (fallback) */
-    --dot-color: #E2A16F; /* Orange-ish */
-    --super-food-color: #a82525; /* Keep red for strawberry */
-    --text-color: #86B0BD; /* Blue-ish for text */
+    --ghost-color: #dfe6e9; /* Light Grey (fallback) */
+    --dot-color: #fab1a0; /* Soft Orange/Pinkish */
+    --super-food-color: #ff7675; /* Soft Red */
+    --text-color: #0984e3; /* Darker Blue */
     --font-family: "Fredoka One", cursive;
 }
 
@@ -201,7 +201,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 230, 230, 0.9);
+    background-color: rgba(235, 245, 255, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,7 +242,7 @@ header {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 4px 0 #f63d3d;
+    box-shadow: 0 4px 0 #0984e3;
     transition: transform 0.1s;
 }
 
